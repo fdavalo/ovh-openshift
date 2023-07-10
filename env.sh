@@ -1,0 +1,9 @@
+cd /home/fdavalo/home/ovh
+export PATH=$PATH:/home/fdavalo/home/terraform
+. ./openrc.sh 
+
+#used for ovh dns
+export OVH_APPLICATION_KEY=...
+export OVH_APPLICATION_SECRET=...
+export OVH_CONSUMER_KEY=...
+
