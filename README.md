@@ -10,6 +10,7 @@ prerequisites :
    - fetch openrc.sh from ovh user (for the specific region) : credentials for openstack on ovh
    - fetch application id+secret+customer token on ovh for dns modification (put in env.sh)
    - pip install ovh (for dns update)
+   - add openshift pull secret and ssh public key on templates/install-config.yaml
 
 parameters : 
    - set three variables before dealing with a cluster (creation, deletion, scale) : 
