@@ -12,24 +12,27 @@ prerequisites :
    - pip install ovh (for dns update)
 
 parameters : 
-   - modify create-cluster.sh, delete-cluster.sh
-          set env variables in each script : name, basedomain, cidr
-   example : 
-export name=cluster1
-export basedomain=toto.com
-export cidr=10.20.0
+   - set three variables before dealing with a cluster (creation, deletion, scale) : 
+        - export name=cluster1   (name of the openshift cluster)
+        - export basedomain=toto.com   (dns domain that must be owned on ovh)
+        - export cidr=10.20.0  (10.20.0.0/24 for machine network and loadbalancers)
 
-  - add-worker.sh <flavor>, 
-           set variables before running add-worker.sh : name, basedomain, cidr
-           flavor can be b2-15, ... t1-90, ... depending on the need
+   - source env.sh (wich will source openrc.sh)
+
+   - execute create-cluster.sh, delete-cluster.sh with no parameters (env vars only)
+
+   - execute add-worker.sh <flavor>, 
+        - flavor can be b2-15, ... t1-90, ... depending on the need
 
 scripts:
    - sh create-cluster.sh to create a 3 node cluster on ovh (upi mode)
-         sometimes, time to get the ovh dns records available can be longer than expected and may affect the bootstrap of the cluster
-   - sh add-worker.sh to add another worker with specific flavor (t1-90)
+        - sometimes, time to get the ovh dns records available can be longer than expected and may affect the bootstrap of the cluster
+
+   - sh add-worker.sh to add another worker with specific flavor (t1-90 with gpu)
+
    - sh delete-cluster.sh to remove all ovh components (not the dns)
 
 comments:
    - terraform could be a better way to handle retry, etc but was not able to make it work for now with ovh, could re try it later
-  - scripts could be embedded in ansible playbooks    
-  - available to explain the scripts and give help for debugging
+   - scripts could be embedded in ansible playbooks    
+   - available to explain the scripts and give help for debugging
